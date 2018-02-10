@@ -6,7 +6,7 @@ $(document).ready(function(){
 	})
 
 	function search(){
-		let query = $('#searchTerm').val()
+		const query = $('#searchTerm').val()
 		let limit 
 		if(limit != undefined){
 			limit = limit

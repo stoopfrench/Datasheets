@@ -40,7 +40,7 @@ app.get('/search', (req, res) => {
 
 //EXPRESS SERVER --------------------------------
 
-let port = 8080;
+const port = 8080;
 
 app.listen(port, () => {
 
