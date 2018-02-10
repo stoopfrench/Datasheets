@@ -9,8 +9,6 @@ const app = express();
 
 const secrets = require('./secrets.js');
 
-const Octokey = secrets.OctopartKey
-
 app.use(express.static('./public'));
 
 //FILES =========================================
@@ -23,11 +21,18 @@ app.get('/', (req, res) => {
 
 
 //REQUESTS ======================================
-app.get('/search', function(req, res) {
+
+const Octokey = secrets.OctopartKey
+
+app.get('/search', (req, res) => {
+    
     console.log(req.query)
-    const searchUrl = `http://octopart.com/api/v3/parts/search?callback=&apikey=${Octokey}&q=${req.query.q}&start=0&limit=20`
+    
+    const searchUrl = `http://octopart.com/api/v3/parts/search?callback=&apikey=${Octokey}&q=${req.query.q}&start=0&limit=${req.query.limit}&include[]=datasheets` 
     request(searchUrl, function(err, response, data){
-        console.log(data)
+        
+        if(err){res.send(err)}
+        
         res.send(data)
     })
 })
